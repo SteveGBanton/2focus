@@ -3,3 +3,24 @@
 .profile-picture {
   max-height:90px;
 }
+
+.bgcolor-failure {
+  background-color: #f86c6b;
+  color: white;
+}
+
+.bgcolor-success {
+  background-color: #4dbd74;
+  color: white;
+}
+
+.display-stats {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.display-stats > div {
+  width: 290px;
+}

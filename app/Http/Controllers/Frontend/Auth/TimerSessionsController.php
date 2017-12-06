@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\System\TimerSessions;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class TimerSessionsController extends Controller
      */
     public function index()
     {
-        return TimerSessions::latest()->get();
+        $userSessions = TimerSessions::all();
+        return $userSessions;
     }
 
     /**
@@ -35,9 +37,10 @@ class TimerSessionsController extends Controller
      */
     public function store(Request $request)
     {
+        info($request);
         $this->validate($request, [
             'target_length' => 'required|numeric',
-            'focus_length' => 'required|numeric',
+            'focused_length' => 'required|numeric',
             'success' => 'required|boolean',
         ]);
         
@@ -50,7 +53,7 @@ class TimerSessionsController extends Controller
 
         return TimerSessions::create([ 
             'target_length' => request('target_length'),
-            'focus_length' => request('focus_length'),
+            'focused_length' => request('focused_length'),
             'success' => request('success'),
             'bill_amt' => $bill_amt,
             'client_id' => auth()->user()->id,

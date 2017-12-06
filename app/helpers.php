@@ -148,3 +148,26 @@ if (! function_exists('get_user_timezone')) {
         return 'UTC';
     }
 }
+
+if (! function_exists('seconds_to_minutes_seconds')) {
+
+    /**
+     * @return string
+     */
+    function seconds_to_minutes_seconds($totalseconds)
+    {
+        $sec = $totalseconds % 60;
+        $totalmin = ($totalseconds - $sec) / 60;
+
+        $min = $totalmin % 60;
+        $hr = ($totalmin - $min) / 60;
+
+        if ($hr == 0 && $min == 0) {
+            return "$sec s";
+        } elseif ($hr == 0) {
+            return "$min m : $sec s";
+        } else {
+            return "$hr h : $min m : $sec s";
+        }
+    }
+}
