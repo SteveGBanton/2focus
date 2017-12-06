@@ -97,11 +97,27 @@ function stopHandler() {
 }
 
 function logSession(wasSuccess, length, stopPoint) {
+
+  const submission = {
+    'target_length': length,
+    'focus_length': stopPoint,
+    'success': wasSuccess,
+  }
+  postToDB(submission);
+
   if (wasSuccess === false) {
     console.log('failure!! ' + stopPoint + ' of ' + length)
   } else {
     console.log('success!! ' + stopPoint + ' of ' + length)
   }
+}
+
+function postToDB(submission) {
+  axios.post('api/timer-sessions', submission)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.error(err));
 }
 
 console.log('timer script loaded1')

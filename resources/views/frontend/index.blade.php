@@ -16,7 +16,7 @@
             @endauth
 
             @auth
-                <div>be careful, you're logged in!</div>
+                <div>{{ auth()->user()->name }}</div>
             @endauth
 
 @endsection

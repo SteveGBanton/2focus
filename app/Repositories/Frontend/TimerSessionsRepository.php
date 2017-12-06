@@ -10,13 +10,21 @@ use App\Models\System\TimerSessions;
 class TimerSessionsRepository extends BaseRepository
 {
     /**
-     * @param User $user
-     * @param array $data
-     *
-     * @return mixed
-     */
-    public function clearSessionExceptCurrent(User $user, array $data)
+    * @return string
+    */
+    public function model()
     {
-        //
+        return TimerSessions::class;
     }
+    
+    // /**
+    //  * @param User $user
+    //  * @param array $data
+    //  *
+    //  * @return mixed
+    //  */
+    // public function addSession(User $user, array $data)
+    // {
+    //     //
+    // }
 }

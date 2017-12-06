@@ -14,7 +14,7 @@ class TimerSessionsController extends Controller
      */
     public function index()
     {
-        //
+        return TimerSessions::latest()->get();
     }
 
     /**
@@ -35,7 +35,26 @@ class TimerSessionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'target_length' => 'required|numeric',
+            'focus_length' => 'required|numeric',
+            'success' => 'required|boolean',
+        ]);
+        
+        $user_billable = (auth()->user()->hasCreditOnFile) ?? false;
+        $bill_amt = 0;
+        
+        if ($request->success == false && $user_billable == true) {
+            $bill_amt = auth()->user()->billAmt ?? 2;
+        };
+
+        return TimerSessions::create([ 
+            'target_length' => request('target_length'),
+            'focus_length' => request('focus_length'),
+            'success' => request('success'),
+            'bill_amt' => $bill_amt,
+            'client_id' => auth()->user()->id,
+        ]);
     }
 
     /**
@@ -80,6 +99,6 @@ class TimerSessionsController extends Controller
      */
     public function destroy(TimerSessions $timerSessions)
     {
-        //
+        // timerSession = TimerSessions::
     }
 }
