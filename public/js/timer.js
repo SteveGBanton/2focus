@@ -35,16 +35,6 @@ if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and 
   visibilityChange = "webkitvisibilitychange";
 }
 
-function handleVisibilityChange() {
-  if (document.hidden && timer !== null) {
-    console.log('left');
-    // TODO fire route to create DB session fail.
-    logSession(false, originalLength, value);
-    value = -1;
-    document.getElementById("input2").value = '0';
-  }
-}
-
 // Warn if the browser doesn't support addEventListener or the Page Visibility API
 if (typeof document.addEventListener === "undefined" || typeof document.hidden === "undefined") {
   console.log("This site requires a modern browser that supports the Page Visibility API.");
@@ -53,6 +43,8 @@ if (typeof document.addEventListener === "undefined" || typeof document.hidden =
   // Handle page visibility change   
   document.addEventListener(visibilityChange, handleVisibilityChange, false);
 }
+
+
 
 function startHandler() {
   if (timer !== null) return;
@@ -80,6 +72,16 @@ function startHandler() {
   }, interval);
 }
 
+// Ends & Logs session when timer is active and user focuses on a different window.
+function handleVisibilityChange() {
+  if (document.hidden && timer !== null && value > 0 && value < originalLength) {
+    document.getElementById("input2").value = '0';
+    logSession(false, originalLength, value);
+    clearTimer();
+  }
+}
+
+// Ends & Logs session when timer is active and user clicks stop.
 function stopHandler() {
   console.log('stop')
   if (timer !== null && value > 0 && value < originalLength) {
@@ -90,34 +92,43 @@ function stopHandler() {
   document.getElementById("stop-button").value = 'stop';
   document.getElementById("stop-button").disabled = false;
   document.getElementById("start-button").disabled = false;
-  clearInterval(timer);
-  timer = null;
-  value = -1;
+  clearTimer();
   document.getElementById("input2").value = 0;
 }
 
-function logSession(wasSuccess, length, stopPoint) {
+// Ends & Logs session when user unloads the window / navigates away.
+window.onunload = function() {
+  console.log('unloading');
+  if (timer !== null && value > 0 && value < originalLength) {
+    document.getElementById("input2").value = 0;
+    logSession(false, originalLength, value);
+    clearTimer();
+  }
+}
 
+function logSession(wasSuccess, length, stopPoint) {
   const submission = {
     'target_length': length,
-    'focus_length': stopPoint,
+    'focused_length': length - stopPoint,
     'success': wasSuccess,
   }
   postToDB(submission);
-
-  if (wasSuccess === false) {
-    console.log('failure!! ' + stopPoint + ' of ' + length)
-  } else {
-    console.log('success!! ' + stopPoint + ' of ' + length)
-  }
 }
 
 function postToDB(submission) {
   axios.post('api/timer-sessions', submission)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
     })
     .catch((err) => console.error(err));
+}
+
+function clearTimer() {
+  if (timer !== null) {
+    clearInterval(timer);
+    timer = null;
+    value = -1;
+  }
 }
 
 console.log('timer script loaded1')
