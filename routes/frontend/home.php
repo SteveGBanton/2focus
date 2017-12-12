@@ -29,5 +29,10 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
          * User Profile Specific
          */
         Route::patch('profile/update', 'ProfileController@update')->name('profile.update');
+        
+        /*
+         * Billing Specific
+         */
+        Route::post('billing/submit', 'BillingController@storePayment')->name('billing.submit');
     });
 });

@@ -3053,6 +3053,10 @@
   clip: auto;
 }
 
+.app-container {
+  width: 100%;
+}
+
 /*!
  * Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors
@@ -12811,8 +12815,170 @@ a.text-dark:hover {
   width: 290px;
 }
 
-.index-timer {
+.index-frame {
   width: 100%;
-  height: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 60vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+}
+
+.index-frame .index-frame-timer-box {
+  position: relative;
+  width: 450px;
+  min-height: 370px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+.index-frame .index-frame-timer-box .index-add-time-button-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.index-frame .index-frame-timer-box .index-add-time-button-group .index-add-time-buttons {
+  border-radius: 0;
+  height: 40px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  min-width: 40px;
+  cursor: pointer;
+  border: 0;
+  background-color: #f4f4f4;
+}
+
+.index-frame .index-frame-timer-box .index-add-time-button-group .index-add-time-buttons:hover {
+  background-color: lightblue;
+}
+
+.index-frame .index-frame-timer-box .index-add-time-button-group .index-add-time-buttons:focus {
+  outline: 0;
+}
+
+.index-frame .index-frame-timer-box .index-add-time-button-group #add-0 {
+  border-top-left-radius: 6px;
+}
+
+.index-frame .index-frame-timer-box .index-add-time-button-group #add-1h {
+  border-top-right-radius: 6px;
+}
+
+.index-frame .index-frame-timer-box .index-countdown-line {
+  height: 5px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.index-frame .index-frame-timer-box .index-countdown-line #index-countdown-line-bar {
+  min-height: 5px;
+  width: 70%;
+  background-color: lightblue;
+}
+
+.index-frame .index-frame-timer-box .index-timer-container {
+  width: 100%;
+  height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.index-frame .index-frame-timer-box .index-timer-container #input2 {
+  color: #555555;
+  font-family: Monaco;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-size: 60px;
+  border: 0;
+  width: 100%;
+  height: 80px;
+}
+
+.index-frame .index-frame-timer-box .index-stop-start-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.index-frame .index-frame-timer-box .index-stop-start-container .index-stop-start-button-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  width: 330px;
+}
+
+.index-frame .index-frame-timer-box .index-stop-start-container .index-stop-start-button-group .index-stop-start-buttons {
+  border-radius: 0;
+  height: 40px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  cursor: pointer;
+  border: 0;
+  background-color: #f4f4f4;
+}
+
+.index-frame .index-frame-timer-box .index-stop-start-container .index-stop-start-button-group .index-stop-start-buttons:hover {
+  background-color: lightblue;
+}
+
+.index-frame .index-frame-timer-box .index-stop-start-container .index-stop-start-button-group .index-stop-start-buttons:focus {
+  outline: 0;
+}
+
+.index-frame .index-frame-timer-box .index-stop-start-container .index-stop-start-button-group #reset-button {
+  border-top-right-radius: 6px;
+  font-size: 11px;
+}
+
+.index-frame .index-frame-timer-box .index-stop-start-container .index-stop-start-button-group #start-button {
+  border-top-left-radius: 6px;
 }
 
