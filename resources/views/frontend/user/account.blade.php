@@ -26,22 +26,31 @@
                                 <a href="#password" class="nav-link" aria-controls="password" role="tab" data-toggle="tab">{{ __('navs.frontend.user.change_password') }}</a>
                             </li>
                             @endif
+
+                            <li class="nav-item">
+                                <a href="#billing" class="nav-link" aria-controls="billing" role="tab" data-toggle="tab">{{ __('navs.frontend.user.billing') }}</a>
+                            </li>
                         </ul>
 
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade show active pt-3" id="profile" aria-labelledby="profile-tab">
+                            <div role="tabpanel" class="tab-pane fade show active pt-4" id="profile" aria-labelledby="profile-tab">
                                 @include('frontend.user.account.tabs.profile')
                             </div><!--tab panel profile-->
 
-                            <div role="tabpanel" class="tab-pane fade show pt-3" id="edit" aria-labelledby="edit-tab">
+                            <div role="tabpanel" class="tab-pane fade show pt-4" id="edit" aria-labelledby="edit-tab">
                                 @include('frontend.user.account.tabs.edit')
                             </div><!--tab panel profile-->
 
                             @if ($logged_in_user->canChangePassword())
-                                <div role="tabpanel" class="tab-pane fade show pt-3" id="password" aria-labelledby="password-tab">
+                                <div role="tabpanel" class="tab-pane fade show pt-4" id="password" aria-labelledby="password-tab">
                                     @include('frontend.user.account.tabs.change-password')
                                 </div><!--tab panel change password-->
                             @endif
+                            
+                            <div role="tabpanel" class="tab-pane fade show pt-4" id="billing" aria-labelledby="billing-tab">
+                                @include('frontend.user.account.tabs.billing')
+                            </div><!--tab panel bill settings-->
+                         
                         </div><!--tab content-->
                     </div><!--tab panel-->
                 </div><!--card body-->
@@ -49,3 +58,8 @@
         </div><!-- col-xs-12 -->
     </div><!-- row -->
 @endsection
+
+@push('after-scripts')
+    <script src="https://js.stripe.com/v2/"></script>
+    <script src="/js/validation.js"></script>
+@endpush

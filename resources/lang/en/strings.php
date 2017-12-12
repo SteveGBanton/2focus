@@ -133,6 +133,7 @@ return [
             'email_changed_notice' => 'You must confirm your new e-mail address before you can log in again.',
             'profile_updated'  => 'Profile successfully updated.',
             'password_updated' => 'Password successfully updated.',
+            'billing_updated'    => 'Billing settings updated!'
         ],
 
         'welcome_to' => 'Welcome to :place',

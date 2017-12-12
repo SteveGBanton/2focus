@@ -1,6 +1,129 @@
 
 
-.index-timer {
+.index-frame {
   width: 100%;
-  height: 600px;
+  display: flex;
+  height: 60vh;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  .index-frame-timer-box {
+    position: relative;
+    width: 450px;
+    min-height: 370px;
+    border-radius: 6px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12), 0 2px 5px rgba(0,0,0,0.12);
+    .index-add-time-button-group {
+      display: flex;
+      flex-flow: row wrap;
+      .index-add-time-buttons {
+        border-radius: 0;
+        height: 40px;
+        flex: 1 1;
+        min-width: 40px;
+        cursor: pointer;
+        border: 0;
+        background-color: rgb(244,244,244);
+        &:hover {
+          background-color: lightblue;
+        }
+        &:focus {
+          outline: 0;
+        }
+      }
+      #add-0 {
+        border-top-left-radius: 6px;
+      }
+      #add-10s {
+        
+      }
+      #add-30s {
+       
+      }
+      #add-1m {
+
+      }
+      #add-5m {
+
+      }
+      #add-10m {
+
+      }
+      #add-30m {
+
+      }
+      #add-1h {
+        border-top-right-radius: 6px;
+      }
+    }
+    .index-countdown-line {
+      height: 5px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      #index-countdown-line-bar {
+        min-height: 5px;
+        width: 70%;
+        background-color: lightblue;
+      }
+    }
+    .index-timer-container {
+      width: 100%;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      #input2 {
+        color: rgb(85, 85, 85);
+        font-family: Monaco;
+        text-align: center;
+        user-select: none;
+        font-size: 60px;
+        border: 0;
+        width: 100%;
+        height: 80px;
+      }
+    }
+    
+    .index-stop-start-container {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .index-stop-start-button-group {
+      display: flex;
+      flex-flow: row wrap;
+      width: 330px;
+      .index-stop-start-buttons {
+        border-radius: 0;
+        height: 40px;
+        flex: 1 1;
+        cursor: pointer;
+        border: 0;
+        background-color: rgb(244,244,244);
+        &:hover {
+          background-color: lightblue;
+        }
+        &:focus {
+          outline: 0;
+        }
+      }
+      #reset-button {
+        border-top-right-radius: 6px;
+        font-size: 11px;
+      }
+      #stop-button {
+      }
+      #start-button {
+        border-top-left-radius: 6px;
+      }
+    }
+    }
+   
+    
+  }
 }
+

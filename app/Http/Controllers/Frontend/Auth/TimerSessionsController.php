@@ -37,6 +37,7 @@ class TimerSessionsController extends Controller
      */
     public function store(Request $request)
     {
+        $user = auth()->user();
         info($request);
         $this->validate($request, [
             'target_length' => 'required|numeric',
@@ -44,19 +45,20 @@ class TimerSessionsController extends Controller
             'success' => 'required|boolean',
         ]);
         
-        $user_billable = (auth()->user()->hasCreditOnFile) ?? false;
-        $bill_amt = 0;
+        $user_billable = ($user->subscribed('main1')) ?? false;
+        $bill_amt = 0; // Assumes successful session
         
         if ($request->success == false && $user_billable == true) {
-            $bill_amt = auth()->user()->billAmt ?? 2;
+            $bill_amt = $user->billAmt ?? 200;
+            $user->invoiceFor('Focus failure', $bill_amt);
         };
 
         return TimerSessions::create([ 
             'target_length' => request('target_length'),
             'focused_length' => request('focused_length'),
             'success' => request('success'),
-            'bill_amt' => $bill_amt,
-            'client_id' => auth()->user()->id,
+            'bill_amt' => ($bill_amt/100),
+            'client_id' => $user->id,
         ]);
     }
 

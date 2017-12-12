@@ -12,6 +12,7 @@ use App\Models\Auth\Traits\SendUserPasswordReset;
 use App\Models\Auth\Traits\Attribute\UserAttribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Auth\Traits\Relationship\UserRelationship;
+use Laravel\Cashier\Billable;
 
 /**
  * Class User.
@@ -26,7 +27,8 @@ class User extends Authenticatable
         UserMethod,
         UserRelationship,
         UserScope,
-        Uuid;
+        Uuid,
+        Billable;
 
     /**
      * The attributes that are mass assignable.
