@@ -48,7 +48,8 @@
 
                         <div class="col-md-8 order-2 order-sm-1">
 
-
+                            @include('frontend.includes.paginate-links')
+                    
                             @forelse ($timerSessions as $one)
                                 <div class="row">
                                     <div class="col">
@@ -71,8 +72,10 @@
                                     </div><!--col-md-6-->
                                 </div><!--row-->
                             @empty
-                                <div>No Sessions Started - <a href="{{route('frontend.index')}}">Start A Session</a></div>
+                                <div>No sessions to display - <a href="{{route('frontend.index')}}">start a focus session</a></div>
                             @endforelse
+
+                            @include('frontend.includes.paginate-links')
 
                         </div><!--col-md-8-->
                     </div><!-- row -->

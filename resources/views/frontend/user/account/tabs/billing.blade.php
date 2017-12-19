@@ -1,6 +1,6 @@
 
 
-@if ($logged_in_user->subscribedToPlan('zerosubdaily', 'main'))
+@if ($logged_in_user->subscribedToPlan('zerosub2', 'main1'))
   <div>SUBSCRIBED!</div>
 @else
   <div>NOT SUBSCRIBED!</div>

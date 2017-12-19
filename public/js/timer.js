@@ -109,12 +109,10 @@ if (typeof document.addEventListener === "undefined" || typeof document.hidden =
 }
 
 function startHandler() {
-  if (timer !== null || value === 0) return;
-  if (value > 0) {
-    displayClock.disabled = true;
-    resetButton.disabled = true;
-    startButton.disabled = true;
-  }
+  if (timer !== null || value <= 0) return;
+  resetButton.disabled = true;
+  startButton.disabled = true;
+  stopButton.disabled = false;
 
   timerLineBar.style['background-color'] = 'lightcoral';
   displayClock.style.color = 'lightcoral';
@@ -142,6 +140,7 @@ function startTimer() {
       logSession(true, originalLength, 0);
       value = -1;
       displayClock.value = "00:00:00";
+      stopHandler();
     } else if (value < 0) {
       value = -1;
       stopHandler();
@@ -163,7 +162,9 @@ function handleVisibilityChange() {
     logSession(false, originalLength, value);
     clearCountdownTimer();
     clearTimer();
-  }
+  } else if (document.hidden && timer === null && countdownTimer !== null)
+    displayClock.value = '00:00:00';
+    clearCountdownTimer();
 }
 
 // Ends & Logs session when timer is active and user clicks stop.
@@ -172,7 +173,7 @@ function stopHandler() {
     logSession(false, originalLength, value);
   }
   resetButton.disabled = false;
-  stopButton.disabled = false;
+  stopButton.disabled = true;
   startButton.disabled = false;
   clearCountdownTimer();
   clearTimer();
