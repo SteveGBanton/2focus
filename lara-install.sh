@@ -2,9 +2,11 @@
 
 # lara-install.sh
 #
-#title           :lara-install.sh
-#description     :Sets up a new Laravel project by installing npm, composer resources and artisan keygen, migrate, seed.
-#author          :steve.g.banton@gmail.com
+# title           :lara-install.sh
+# description     :Sets up a new Laravel project by installing
+#                  npm, composer resources and artisan keygen,
+#                  migrate, seed.
+# author          :steve.g.banton@gmail.com
 #
 
 echo -n "Are you in homestead box (y/n)? "

@@ -3,13 +3,9 @@
   Define document objects
  */
 const timerLineBar = document.getElementById("index-countdown-line-bar");
-
 const startButton = document.getElementById("start-button");
-
 const stopButton = document.getElementById("stop-button");
-
 const resetButton = document.getElementById("reset-button");
-
 const displayClock = document.getElementById("input2");
 
 const add0Button = document.getElementById("add-0");
@@ -20,8 +16,6 @@ const add5mButton = document.getElementById("add-5m");
 const add10mButton = document.getElementById("add-10m");
 const add30mButton = document.getElementById("add-30m");
 const add1hButton = document.getElementById("add-1h");
-
-// TODO add get elements by class - make all add time buttons disabled when 
 
 /*
   Set initial timer variables
@@ -39,9 +33,7 @@ displayClock.value = computeDisplayValue(originalLength);
   Add listeners to start, stop, reset buttons and input (time display) field
  */
 startButton.addEventListener("click", startHandler);
-
 stopButton.addEventListener("click", stopHandler);
-
 resetButton.addEventListener("click", function () {
   displayClock.value = computeDisplayValue(originalLength);
   value = originalLength;
@@ -60,17 +52,11 @@ add0Button.addEventListener("click", function () {
 });
 
 add10sButton.addEventListener("click", () => addTime(10000));
-
 add30sButton.addEventListener("click", () => addTime(30000));
-
 add1mButton.addEventListener("click", () => addTime(60000));
-
 add5mButton.addEventListener("click", () => addTime(300000));
-
 add10mButton.addEventListener("click", () => addTime(600000));
-
 add30mButton.addEventListener("click", () => addTime(1800000));
-
 add1hButton.addEventListener("click", () => addTime(3600000))
 
 function addTime(time) {
@@ -109,12 +95,10 @@ if (typeof document.addEventListener === "undefined" || typeof document.hidden =
 }
 
 function startHandler() {
-  if (timer !== null || value === 0) return;
-  if (value > 0) {
-    displayClock.disabled = true;
-    resetButton.disabled = true;
-    startButton.disabled = true;
-  }
+  if (timer !== null || value <= 0) return;
+  resetButton.disabled = true;
+  startButton.disabled = true;
+  stopButton.disabled = false;
 
   timerLineBar.style['background-color'] = 'lightcoral';
   displayClock.style.color = 'lightcoral';
@@ -142,6 +126,7 @@ function startTimer() {
       logSession(true, originalLength, 0);
       value = -1;
       displayClock.value = "00:00:00";
+      stopHandler();
     } else if (value < 0) {
       value = -1;
       stopHandler();
@@ -163,7 +148,9 @@ function handleVisibilityChange() {
     logSession(false, originalLength, value);
     clearCountdownTimer();
     clearTimer();
-  }
+  } else if (document.hidden && timer === null && countdownTimer !== null)
+    displayClock.value = '00:00:00';
+    clearCountdownTimer();
 }
 
 // Ends & Logs session when timer is active and user clicks stop.
@@ -172,7 +159,7 @@ function stopHandler() {
     logSession(false, originalLength, value);
   }
   resetButton.disabled = false;
-  stopButton.disabled = false;
+  stopButton.disabled = true;
   startButton.disabled = false;
   clearCountdownTimer();
   clearTimer();
