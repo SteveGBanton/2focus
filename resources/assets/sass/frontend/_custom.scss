@@ -1,5 +1,31 @@
 // Override the Bootstrap defaults without modifying key, versioned files.
 
+#app {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  .navbar-brand {
+    font-size: 28px;
+    padding-right: 3rem;
+    font-weight: 300;
+  }
+}
+
+.dropdown-menu {
+  .dropdown-item {
+    font-weight: 300;
+  }
+}
+
 .app-container {
-  width: 100%;
+  margin: 2vw;
+  padding-top: 30px;
+  width: 94%;
 }

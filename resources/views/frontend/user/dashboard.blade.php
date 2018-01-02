@@ -11,42 +11,8 @@
                 </div><!--card-header-->
 
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col col-sm-4 order-1 order-sm-2 mb-4">
-                            <div class="card mb-4 bg-light">
-                                <img class="card-img-top" src="{{ $logged_in_user->picture }}" alt="Profile Picture">
-
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        {{ $logged_in_user->name }}<br/>
-                                    </h4>
-
-                                    <p class="card-text">
-                                        <small>
-                                            <i class="fa fa-envelope-o"></i> {{ $logged_in_user->email }}<br/>
-                                            <i class="fa fa-calendar-check-o"></i> {{ __('strings.frontend.general.joined') }} {{ $logged_in_user->created_at->timezone(get_user_timezone())->format('F jS, Y') }}
-                                        </small>
-                                    </p>
-
-                                    <p class="card-text">
-
-                                        <a href="{{ route('frontend.user.account')}}" class="btn btn-info btn-sm mb-1">
-                                            <i class="fa fa-user-circle-o"></i> {{ __('navs.frontend.user.account') }}
-                                        </a>
-
-                                        @can('view backend')
-                                            &nbsp;<a href="{{ route ('admin.dashboard')}}" class="btn btn-danger btn-sm mb-1">
-                                                <i class="fa fa-user-secret"></i> {{ __('navs.frontend.user.administration') }}
-                                            </a>
-                                        @endcan
-                                    </p>
-                                </div>
-                            </div>
-
-                            
-                        </div><!--col-md-4-->
-
-                        <div class="col-md-8 order-2 order-sm-1">
+                    <div class="row text-center center-block">
+                        <div class="col-md-12">
 
                             @include('frontend.includes.paginate-links')
                     
